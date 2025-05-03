@@ -1,0 +1,57 @@
+body {
+    font-family: "Montserrat", sans-serif;
+  }
+  
+  .glass-card {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .auth-modal {
+    transition: all 0.3s ease;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-20px);
+  }
+  
+  .auth-modal.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+  
+  .auth-tab {
+    transition: all 0.3s ease;
+  }
+  
+  .auth-tab.active {
+    background-color: rgba(255, 255, 255, 0.2);
+    font-weight: 600;
+  }
+  
+  .form-input {
+    width: 100%;
+    background-color: rgba(55, 65, 81, 0.5);
+    border: 1px solid #4b5563;
+    border-radius: 0.5rem;
+    padding: 0.5rem 1rem;
+    color: white;
+    outline: none;
+  }
+  
+  .submit-btn {
+    width: 100%;
+    background-color: white;
+    color: #1f2937;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+  }
+  
+  .submit-btn:hover {
+    background-color: #e5e7eb;
+  }
+  
