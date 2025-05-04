@@ -1,9 +1,10 @@
 <?php
-session_start();
-ini_set('display_errors', 1);  // Muestra los errores
-error_reporting(E_ALL);        // Muestra todos los errores
-
+session_start();  // Asegúrate de que esta línea esté al inicio
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
 header('Content-Type: application/json');
+
+// Resto del código...
 
 // Config de conexión
 $host = 'localhost';
@@ -23,7 +24,6 @@ try {
     exit;
   }
   
-
 // Leer JSON
 $input = json_decode(file_get_contents('php://input'), true);
 $action = $input['action'] ?? null;

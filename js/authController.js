@@ -1,4 +1,3 @@
-// Modal y formularios
 const signInBtn = document.getElementById('signInBtn');
 const registerBtn = document.getElementById('registerBtn');
 const authModal = document.getElementById('authModal');
@@ -75,7 +74,7 @@ loginForm.addEventListener('submit', async (e) => {
   const email = document.getElementById('loginEmail').value;
   const password = document.getElementById('loginPassword').value;
 
-  const res = await fetch('auth.php', {
+  const res = await fetch('/Vinylipedia/auth.php', {  // Actualizado a ruta correcta
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ action: 'login', email, password })
@@ -85,11 +84,12 @@ loginForm.addEventListener('submit', async (e) => {
   if (data.success) {
     alert('Inicio de sesión exitoso');
     closeAuthModal();
-    location.reload(); // para reflejar el estado de sesión
+    window.location.href = "/Vinylipedia/home_web.php";  // Asegúrate de que esta ruta sea correcta
   } else {
     alert(data.error || 'Error al iniciar sesión');
-  }
+  }  
 });
+
 
 // REGISTRO
 registerForm.addEventListener('submit', async (e) => {
@@ -98,7 +98,7 @@ registerForm.addEventListener('submit', async (e) => {
   const email = document.getElementById('registerEmail').value;
   const password = document.getElementById('registerPassword').value;
 
-  const res = await fetch('auth.php', {
+  const res = await fetch('/Vinylipedia/auth.php', {  // Actualizado a ruta correcta
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ action: 'register', username, email, password })
@@ -108,6 +108,7 @@ registerForm.addEventListener('submit', async (e) => {
   if (data.success) {
     alert('Registro exitoso');
     closeAuthModal();
+    window.location.href = "/Vinylipedia/home_web.php";  // Asegúrate de que esta ruta sea correcta
   } else {
     alert(data.error || 'Error al registrarse');
   }
@@ -151,3 +152,4 @@ async function checkSession() {
 }
 
 checkSession();
+asserts
