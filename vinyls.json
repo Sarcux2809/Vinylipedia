@@ -1,0 +1,71 @@
+{
+    "todos": [
+      {
+        "titulo": "Abbey Road",
+        "artista": "The Beatles",
+        "imagen": "https://upload.wikimedia.org/wikipedia/en/4/42/Beatles_-_Abbey_Road.jpg"
+      },
+      {
+        "titulo": "Thriller",
+        "artista": "Michael Jackson",
+        "imagen": "https://upload.wikimedia.org/wikipedia/en/5/55/Michael_Jackson_-_Thriller.png"
+      }
+    ],
+    "leyendas": [
+      {
+        "nombre": "Freddie Mercury",
+        "imagen": "https://upload.wikimedia.org/wikipedia/commons/0/0e/Freddie_Mercury_1977.jpg"
+      },
+      {
+        "nombre": "David Bowie",
+        "imagen": "https://upload.wikimedia.org/wikipedia/commons/e/e5/David-Bowie_Chicago_2002-08-08_photoby_Adam-Bielawski-cropped.jpg"
+      }
+    ],
+    "mas_escuchados": [
+      {
+        "titulo": "Back in Black",
+        "artista": "AC/DC",
+        "imagen": "https://upload.wikimedia.org/wikipedia/commons/7/70/Back_in_Black_ACDC.png"
+      },
+      {
+        "titulo": "Hotel California",
+        "artista": "Eagles",
+        "imagen": "https://upload.wikimedia.org/wikipedia/en/4/49/Hotelcalifornia.jpg"
+      }
+    ],
+    "baul": [
+      {
+        "titulo": "The Dark Side of the Moon",
+        "artista": "Pink Floyd",
+        "imagen": "https://upload.wikimedia.org/wikipedia/en/3/3b/Dark_Side_of_the_Moon.png"
+      },
+      {
+        "titulo": "Rumours",
+        "artista": "Fleetwood Mac",
+        "imagen": "https://upload.wikimedia.org/wikipedia/en/f/fb/FMacRumours.PNG"
+      }
+    ],
+    "joyas": [
+      {
+        "titulo": "Future Nostalgia",
+        "artista": "Dua Lipa",
+        "imagen": "https://upload.wikimedia.org/wikipedia/en/7/7e/Dua_Lipa_-_Future_Nostalgia_%28Official_Album_Cover%29.png"
+      },
+      {
+        "titulo": "Melodrama",
+        "artista": "Lorde",
+        "imagen": "https://upload.wikimedia.org/wikipedia/en/6/60/Lorde_-_Melodrama.png"
+      }
+    ],
+    "generos": [
+      "Rock",
+      "Pop",
+      "Jazz",
+      "Funk",
+      "Soul",
+      "Blues",
+      "Reggae",
+      "Disco"
+    ]
+  }
+  
