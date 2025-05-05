@@ -1,71 +1,43 @@
 {
-    "todos": [
-      {
-        "titulo": "Abbey Road",
-        "artista": "The Beatles",
-        "imagen": "https://upload.wikimedia.org/wikipedia/en/4/42/Beatles_-_Abbey_Road.jpg"
-      },
-      {
-        "titulo": "Thriller",
-        "artista": "Michael Jackson",
-        "imagen": "https://upload.wikimedia.org/wikipedia/en/5/55/Michael_Jackson_-_Thriller.png"
-      }
-    ],
+    "todos": [],
     "leyendas": [
-      {
-        "nombre": "Freddie Mercury",
-        "imagen": "https://upload.wikimedia.org/wikipedia/commons/0/0e/Freddie_Mercury_1977.jpg"
-      },
-      {
-        "nombre": "David Bowie",
-        "imagen": "https://upload.wikimedia.org/wikipedia/commons/e/e5/David-Bowie_Chicago_2002-08-08_photoby_Adam-Bielawski-cropped.jpg"
-      }
+      { "nombre": "José José", "imagen": "https://upload.wikimedia.org/wikipedia/commons/7/7c/Jose_Jose_1981.jpg" },
+      { "nombre": "Pink Floyd", "imagen": "https://upload.wikimedia.org/wikipedia/en/3/3b/Dark_Side_of_the_Moon.png" },
+      { "nombre": "Queen", "imagen": "https://upload.wikimedia.org/wikipedia/en/0/05/Queen_Queen.png" },
+      { "nombre": "Juan Gabriel", "imagen": "https://upload.wikimedia.org/wikipedia/commons/1/17/Juan_Gabriel_en_concierto.jpg" },
+      { "nombre": "Rocío Dúrcal", "imagen": "https://upload.wikimedia.org/wikipedia/commons/3/35/Roc%C3%ADo_D%C3%BArcal_en_1983.jpg" },
+      { "nombre": "Daft Punk", "imagen": "https://upload.wikimedia.org/wikipedia/en/0/0d/Daft_Punk_-_Random_Access_Memories.png" },
+      { "nombre": "Nirvana", "imagen": "https://upload.wikimedia.org/wikipedia/en/b/b7/NirvanaNevermindalbumcover.jpg" },
+      { "nombre": "Lana Del Rey", "imagen": "https://upload.wikimedia.org/wikipedia/en/6/6b/Lana_Del_Rey_-_Did_You_Know_That_There%27s_a_Tunnel_Under_Ocean_Blvd.png" },
+      { "nombre": "The Beatles", "imagen": "https://upload.wikimedia.org/wikipedia/en/4/42/Beatles_-_Abbey_Road.jpg" }
     ],
     "mas_escuchados": [
-      {
-        "titulo": "Back in Black",
-        "artista": "AC/DC",
-        "imagen": "https://upload.wikimedia.org/wikipedia/commons/7/70/Back_in_Black_ACDC.png"
-      },
-      {
-        "titulo": "Hotel California",
-        "artista": "Eagles",
-        "imagen": "https://upload.wikimedia.org/wikipedia/en/4/49/Hotelcalifornia.jpg"
-      }
+      { "titulo": "The Dark Side of the Moon", "artista": "Pink Floyd", "imagen": "https://upload.wikimedia.org/wikipedia/en/3/3b/Dark_Side_of_the_Moon.png" },
+      { "titulo": "Abbey Road (Super Deluxe Edition)", "artista": "The Beatles", "imagen": "https://upload.wikimedia.org/wikipedia/en/4/42/Beatles_-_Abbey_Road.jpg" }
     ],
     "baul": [
-      {
-        "titulo": "The Dark Side of the Moon",
-        "artista": "Pink Floyd",
-        "imagen": "https://upload.wikimedia.org/wikipedia/en/3/3b/Dark_Side_of_the_Moon.png"
-      },
-      {
-        "titulo": "Rumours",
-        "artista": "Fleetwood Mac",
-        "imagen": "https://upload.wikimedia.org/wikipedia/en/f/fb/FMacRumours.PNG"
-      }
+      { "titulo": "What's Going On", "artista": "Marvin Gaye", "imagen": "https://upload.wikimedia.org/wikipedia/en/8/84/MarvinGayeWhat%27sGoingOnalbumcover.jpg" },
+      { "titulo": "Blue", "artista": "Joni Mitchell", "imagen": "https://upload.wikimedia.org/wikipedia/en/3/3b/Bluealbumcover.jpg" },
+      { "titulo": "Bridge Over Troubled Water", "artista": "Simon & Garfunkel", "imagen": "https://upload.wikimedia.org/wikipedia/en/d/df/Simon_%26_Garfunkel%2C_Bridge_Over_Troubled_Water.jpg" },
+      { "titulo": "Unknown Pleasures", "artista": "Joy Division", "imagen": "https://upload.wikimedia.org/wikipedia/en/3/3c/UnknownPleasuresVinyl.jpg" },
+      { "titulo": "London Calling", "artista": "The Clash", "imagen": "https://upload.wikimedia.org/wikipedia/en/0/00/TheClashLondonCallingalbumcover.jpg" },
+      { "titulo": "The Velvet Underground & Nico", "artista": "The Velvet Underground", "imagen": "https://upload.wikimedia.org/wikipedia/en/0/0c/Velvet_Underground_and_Nico.jpg" },
+      { "titulo": "I Never Loved a Man the Way I Love You", "artista": "Aretha Franklin", "imagen": "https://upload.wikimedia.org/wikipedia/en/7/76/ArethaFranklinINeverLovedaMan.jpg" }
     ],
     "joyas": [
-      {
-        "titulo": "Future Nostalgia",
-        "artista": "Dua Lipa",
-        "imagen": "https://upload.wikimedia.org/wikipedia/en/7/7e/Dua_Lipa_-_Future_Nostalgia_%28Official_Album_Cover%29.png"
-      },
-      {
-        "titulo": "Melodrama",
-        "artista": "Lorde",
-        "imagen": "https://upload.wikimedia.org/wikipedia/en/6/60/Lorde_-_Melodrama.png"
-      }
+      { "titulo": "Did You Know That There's a Tunnel Under Ocean Blvd", "artista": "Lana Del Rey", "imagen": "https://upload.wikimedia.org/wikipedia/en/6/6b/Lana_Del_Rey_-_Did_You_Know_That_There%27s_a_Tunnel_Under_Ocean_Blvd.png" },
+      { "titulo": "The Car", "artista": "Arctic Monkeys", "imagen": "https://upload.wikimedia.org/wikipedia/en/f/f4/The_Car_-_Arctic_Monkeys.png" },
+      { "titulo": "An Evening with Silk Sonic", "artista": "Bruno Mars, Anderson .Paak", "imagen": "https://upload.wikimedia.org/wikipedia/en/e/e2/Silk_Sonic_-_An_Evening_with_Silk_Sonic.png" },
+      { "titulo": "And in the Darkness, Hearts Aglow", "artista": "Weyes Blood", "imagen": "https://upload.wikimedia.org/wikipedia/en/9/9e/Weyes_Blood_-_And_in_the_Darkness%2C_Hearts_Aglow.png" },
+      { "titulo": "Midnights", "artista": "Taylor Swift", "imagen": "https://upload.wikimedia.org/wikipedia/en/8/8f/Taylor_Swift_-_Midnights.png" },
+      { "titulo": "Mordechai", "artista": "Khruangbin", "imagen": "https://upload.wikimedia.org/wikipedia/en/5/5d/Khruangbin_-_Mordechai.png" },
+      { "titulo": "I Don't Live Here Anymore", "artista": "The War on Drugs", "imagen": "https://upload.wikimedia.org/wikipedia/en/4/4e/The_War_on_Drugs_-_I_Don%27t_Live_Here_Anymore.png" }
     ],
     "generos": [
-      "Rock",
-      "Pop",
-      "Jazz",
-      "Funk",
-      "Soul",
-      "Blues",
-      "Reggae",
-      "Disco"
+      "1950s", "1960s", "1970s", "1980s", "1990s", "2000s y 2010s",
+      "Rock Clásico", "Soul & Motown", "Funk", "Jazz", "Blues", "Disco",
+      "Pop Retro", "Psychedelic Rock", "Folk", "Reggae & Dub",
+      "Post-Punk / New Wave", "R&B Clásico", "Garage Rock", "Experimental", "Latin Vintage"
     ]
   }
   

@@ -6,7 +6,6 @@ if (!isset($_SESSION['user']) || empty($_SESSION['user']['username'])) {
 }
 $nombreUsuario = htmlspecialchars($_SESSION['user']['username']);
 ?>
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -18,8 +17,8 @@ $nombreUsuario = htmlspecialchars($_SESSION['user']['username']);
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
   <style>
     body { font-family: "Inter", sans-serif; }
-    .scrollbar-hide::-webkit-scrollbar { display: none; }
-    .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
   </style>
 </head>
 
@@ -56,12 +55,12 @@ $nombreUsuario = htmlspecialchars($_SESSION['user']['username']);
     <!-- Secciones -->
     <section class="mb-6">
       <h2 class="font-semibold text-base mb-3 select-none">Explora vinilos</h2>
-      <div id="vinylList" class="flex gap-6 overflow-x-auto scrollbar-hide py-1"></div>
+      <div id="vinylList" class="flex gap-6 overflow-x-auto no-scrollbar py-1"></div>
     </section>
 
     <section class="mb-6">
       <h2 class="font-semibold text-base mb-3 select-none">Las leyendas detrás del sonido</h2>
-      <ul class="flex gap-6 overflow-x-auto scrollbar-hide py-1" id="legendList"></ul>
+      <ul class="flex gap-6 overflow-x-auto no-scrollbar py-1" id="legendList"></ul>
     </section>
 
     <section class="mb-6">
@@ -71,17 +70,17 @@ $nombreUsuario = htmlspecialchars($_SESSION['user']['username']);
 
     <section class="mb-6">
       <h2 class="font-semibold text-base mb-3 select-none">Lo más escuchado, lo más amado</h2>
-      <div id="topList" class="flex gap-6 overflow-x-auto scrollbar-hide py-1"></div>
+      <div id="topList" class="flex gap-6 overflow-x-auto no-scrollbar py-1"></div>
     </section>
 
     <section class="mb-6">
       <h2 class="font-semibold text-base mb-3 select-none">Del baúl sonoro a tus oídos: vinilos que debes escuchar</h2>
-      <div id="baulList" class="flex gap-6 overflow-x-auto scrollbar-hide py-1"></div>
+      <div id="baulList" class="flex gap-6 overflow-x-auto no-scrollbar py-1"></div>
     </section>
 
     <section class="mb-6">
       <h2 class="font-semibold text-base mb-3 select-none">Nuevas joyas con alma de clásicos</h2>
-      <div id="joyasList" class="flex gap-6 overflow-x-auto scrollbar-hide py-1"></div>
+      <div id="joyasList" class="flex gap-6 overflow-x-auto no-scrollbar py-1"></div>
     </section>
 
     <section class="mb-6">
@@ -95,17 +94,26 @@ $nombreUsuario = htmlspecialchars($_SESSION['user']['username']);
     let allVinyls = [];
 
     fetch('vinyls.json')
-      .then(res => res.json())
+      .then(res => {
+        if (!res.ok) {
+          throw new Error('No se pudo cargar el archivo JSON.');
+        }
+        return res.json();
+      })
       .then(data => {
-        allVinyls = data.todos;
+        allVinyls = data.todos || [];
         renderVinyls(allVinyls);
 
-        renderList(data.leyendas, 'legendList', true);
-        renderList(data.mas_escuchados, 'topList');
-        renderList(data.baul, 'baulList');
-        renderList(data.joyas, 'joyasList');
-        renderGenres(data.generos, 'genresList');
-        renderGenres(data.generos, 'genresList2');
+        renderList(data.leyendas || [], 'legendList', true);
+        renderList(data.mas_escuchados || [], 'topList');
+        renderList(data.baul || [], 'baulList');
+        renderList(data.joyas || [], 'joyasList');
+        renderGenres(data.generos || [], 'genresList');
+        renderGenres(data.generos || [], 'genresList2');
+      })
+      .catch(error => {
+        console.error('Error al cargar los datos:', error);
+        document.getElementById('vinylList').innerHTML = '<p class="text-white">Error al cargar los datos.</p>';
       });
 
     function renderVinyls(list) {
@@ -119,7 +127,7 @@ $nombreUsuario = htmlspecialchars($_SESSION['user']['username']);
         const item = document.createElement('div');
         item.className = "flex-shrink-0 w-40 text-center";
         item.innerHTML = `
-          <img src="${v.imagen}" alt="${v.titulo}" class="rounded mb-2 w-full">
+          <img src="${v.imagen}" alt="${v.titulo}" class="rounded mb-2 w-full" onerror="this.onerror=null; this.src='ruta/a/imagen_de_respaldo.jpg';">
           <p class="text-sm font-semibold">${v.titulo}</p>
           <p class="text-xs text-gray-400">${v.artista}</p>
         `;
@@ -133,10 +141,13 @@ $nombreUsuario = htmlspecialchars($_SESSION['user']['username']);
       list.forEach(v => {
         const item = document.createElement(isCircle ? 'li' : 'div');
         item.className = isCircle ? "text-center" : "flex-shrink-0 w-40 text-center";
+        const nombre = v.nombre || '';
+        const titulo = v.titulo || '';
+        const artista = v.artista || '';
         item.innerHTML = `
-          <img src="${v.imagen}" alt="${v.titulo || v.nombre}" class="${isCircle ? 'rounded-full w-14 h-14 mb-1 object-cover' : 'rounded mb-2 w-full'}">
-          <p class="text-sm font-semibold">${v.titulo || ''}</p>
-          <p class="text-xs text-gray-400">${v.artista || v.nombre}</p>
+          <img src="${v.imagen}" alt="${titulo || nombre}" class="${isCircle ? 'rounded-full w-14 h-14 mb-1 object-cover' : 'rounded mb-2 w-full'}" onerror="this.onerror=null; this.src='ruta/a/imagen_de_respaldo.jpg';">
+          <p class="text-sm font-semibold">${titulo || nombre}</p>
+          ${artista ? `<p class="text-xs text-gray-400">${artista}</p>` : ''}
         `;
         container.appendChild(item);
       });
