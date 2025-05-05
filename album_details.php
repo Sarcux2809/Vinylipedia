@@ -32,6 +32,108 @@ function fetchFromDiscogs($url, $token) {
     return json_decode($response, true);
 }
 
+// Función para obtener el color dominante de una imagen
+function getDominantColor($imageUrl) {
+    // Si no hay imagen, devolver colores por defecto
+    if (empty($imageUrl)) {
+        return ['#1a1a1f', '#2a2a33', '#0f0f12'];
+    }
+    
+    try {
+        // Crear una imagen temporal
+        $tempFile = tempnam(sys_get_temp_dir(), 'vinyl');
+        file_put_contents($tempFile, file_get_contents($imageUrl));
+        
+        // Crear imagen desde el archivo
+        $image = imagecreatefromstring(file_get_contents($tempFile));
+        if (!$image) {
+            unlink($tempFile);
+            return ['#1a1a1f', '#2a2a33', '#0f0f12'];
+        }
+        
+        // Redimensionar a 1x1 para obtener el color promedio
+        $resized = imagecreatetruecolor(1, 1);
+        imagecopyresampled($resized, $image, 0, 0, 0, 0, 1, 1, imagesx($image), imagesy($image));
+        $rgb = imagecolorat($resized, 0, 0);
+        $r = ($rgb >> 16) & 0xFF;
+        $g = ($rgb >> 8) & 0xFF;
+        $b = $rgb & 0xFF;
+        
+        // Convertir a HSL para ajustar la luminosidad
+        $hsl = rgbToHsl($r, $g, $b);
+        
+        // Crear colores para el degradado
+        $baseColor = hslToRgb($hsl[0], $hsl[1], 0.15); // Más oscuro
+        $midColor = hslToRgb($hsl[0], $hsl[1], 0.25); // Medio
+        $endColor = hslToRgb($hsl[0], $hsl[1], 0.08); // Más oscuro aún
+        
+        imagedestroy($image);
+        imagedestroy($resized);
+        unlink($tempFile);
+        
+        return [
+            sprintf("#%02x%02x%02x", $baseColor[0], $baseColor[1], $baseColor[2]),
+            sprintf("#%02x%02x%02x", $midColor[0], $midColor[1], $midColor[2]),
+            sprintf("#%02x%02x%02x", $endColor[0], $endColor[1], $endColor[2])
+        ];
+    } catch (Exception $e) {
+        return ['#1a1a1f', '#2a2a33', '#0f0f12'];
+    }
+}
+
+// Conversión de RGB a HSL
+function rgbToHsl($r, $g, $b) {
+    $r /= 255;
+    $g /= 255;
+    $b /= 255;
+    
+    $max = max($r, $g, $b);
+    $min = min($r, $g, $b);
+    $h = $s = $l = ($max + $min) / 2;
+    
+    if ($max == $min) {
+        $h = $s = 0; // achromatic
+    } else {
+        $d = $max - $min;
+        $s = $l > 0.5 ? $d / (2 - $max - $min) : $d / ($max + $min);
+        
+        switch ($max) {
+            case $r: $h = ($g - $b) / $d + ($g < $b ? 6 : 0); break;
+            case $g: $h = ($b - $r) / $d + 2; break;
+            case $b: $h = ($r - $g) / $d + 4; break;
+        }
+        
+        $h /= 6;
+    }
+    
+    return [$h, $s, $l];
+}
+
+// Conversión de HSL a RGB
+function hslToRgb($h, $s, $l) {
+    if ($s == 0) {
+        $r = $g = $b = $l * 255;
+    } else {
+        $q = $l < 0.5 ? $l * (1 + $s) : $l + $s - $l * $s;
+        $p = 2 * $l - $q;
+        
+        $r = hueToRgb($p, $q, $h + 1/3);
+        $g = hueToRgb($p, $q, $h);
+        $b = hueToRgb($p, $q, $h - 1/3);
+    }
+    
+    return [round($r * 255), round($g * 255), round($b * 255)];
+}
+
+function hueToRgb($p, $q, $t) {
+    if ($t < 0) $t += 1;
+    if ($t > 1) $t -= 1;
+    if ($t < 1/6) return $p + ($q - $p) * 6 * $t;
+    if ($t < 1/2) return $q;
+    if ($t < 2/3) return $p + ($q - $p) * (2/3 - $t) * 6;
+    return $p;
+}
+
 // Obtener datos del álbum
 $album = fetchFromDiscogs($album_url, $discogs_token);
 
@@ -40,6 +142,10 @@ if (isset($album['message'])) {
     header('Location: home_web.php');
   exit();
 }
+
+// Obtener el color dominante de la imagen del álbum
+$albumImage = !empty($album['images'][0]['uri']) ? $album['images'][0]['uri'] : '';
+$gradientColors = getDominantColor($albumImage);
 
 // Obtener más álbumes del artista si está disponible
 $artistAlbums = [];
@@ -128,9 +234,14 @@ $trackInfo = getTrackInfo($album);
       50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
     }
+    
+    .dynamic-bg {
+      background: linear-gradient(to bottom, <?= $gradientColors[0] ?>, <?= $gradientColors[1] ?>, <?= $gradientColors[2] ?>);
+      transition: background 1s ease;
+    }
   </style>
 </head>
-<body class="bg-gradient-to-b from-[#1a1a1f] via-[#2a2a33] to-[#0f0f12] min-h-screen p-4 font-sans text-white">
+<body class="dynamic-bg min-h-screen p-4 font-sans text-white">
 <div class="relative w-full max-w-screen-xl mx-auto ...">
     <div class="absolute top-2 left-2 bg-black bg-opacity-60 text-white text-[10px] px-2 py-[2px] rounded select-none">
     </div>
@@ -180,7 +291,7 @@ $trackInfo = getTrackInfo($album);
         alt="<?= htmlspecialchars($album['title'] ?? 'Portada del álbum') ?>" 
         class="w-44 h-44 object-cover rounded-md flex-shrink-0" 
         height="180" 
-        src="<?= !empty($album['images'][0]['uri']) ? $album['images'][0]['uri'] : 'https://upload.wikimedia.org/wikipedia/commons/3/3c/No-album-art.png' ?>" 
+        src="<?= $albumImage ?: 'https://upload.wikimedia.org/wikipedia/commons/3/3c/No-album-art.png' ?>" 
         width="180"
         onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/3/3c/No-album-art.png'"
       />
