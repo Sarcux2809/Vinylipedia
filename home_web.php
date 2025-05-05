@@ -57,10 +57,12 @@ $nombreUsuario = htmlspecialchars($_SESSION['user']['username']);
         </nav>
       </div>
       <div class="flex items-center gap-3 flex-wrap">
-        <div class="relative">
-          <input id="searchInput" class="bg-[#4a4540] rounded-full pl-4 pr-10 py-1 text-sm placeholder:text-[#7a7a7a] focus:outline-none" placeholder="Buscar" type="search" />
-          <i class="fas fa-search absolute right-3 top-1/2 -translate-y-1/2 text-[#7a7a7a] text-xs"></i>
-        </div>
+        <form id="searchForm" action="search_results.php" method="GET" class="relative">
+          <input id="searchInput" name="query" class="bg-[#4a4540] rounded-full pl-4 pr-10 py-1 text-sm placeholder:text-[#7a7a7a] focus:outline-none" placeholder="Buscar artista o álbum" type="search" required />
+          <button type="submit" class="absolute right-3 top-1/2 -translate-y-1/2 text-[#7a7a7a] text-xs">
+            <i class="fas fa-search"></i>
+          </button>
+        </form>
         <button aria-label="Carrito" class="text-white text-lg"><i class="fas fa-shopping-cart"></i></button>
         <div class="relative group">
           <button class="bg-white text-black rounded px-3 py-1 font-semibold"><?= $nombreUsuario ?></button>
