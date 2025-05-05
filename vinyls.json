@@ -12,32 +12,82 @@
       { "nombre": "The Beatles", "imagen": "https://upload.wikimedia.org/wikipedia/en/4/42/Beatles_-_Abbey_Road.jpg" }
     ],
     "mas_escuchados": [
-      { "titulo": "The Dark Side of the Moon", "artista": "Pink Floyd", "imagen": "https://upload.wikimedia.org/wikipedia/en/3/3b/Dark_Side_of_the_Moon.png" },
-      { "titulo": "Abbey Road (Super Deluxe Edition)", "artista": "The Beatles", "imagen": "https://upload.wikimedia.org/wikipedia/en/4/42/Beatles_-_Abbey_Road.jpg" }
+      { 
+        "titulo": "The Dark Side of the Moon", 
+        "artista": "Pink Floyd", 
+        "imagen": "https://upload.wikimedia.org/wikipedia/en/3/3b/Dark_Side_of_the_Moon.png",
+        "badge": ""
+      },
+      { 
+        "titulo": "Abbey Road (Super Deluxe Edition)", 
+        "artista": "The Beatles", 
+        "imagen": "https://upload.wikimedia.org/wikipedia/en/4/42/Beatles_-_Abbey_Road.jpg",
+        "badge": "Super Deluxe Edition"
+      }
     ],
     "baul": [
-      { "titulo": "What's Going On", "artista": "Marvin Gaye", "imagen": "https://upload.wikimedia.org/wikipedia/en/8/84/MarvinGayeWhat%27sGoingOnalbumcover.jpg" },
-      { "titulo": "Blue", "artista": "Joni Mitchell", "imagen": "https://upload.wikimedia.org/wikipedia/en/3/3b/Bluealbumcover.jpg" },
-      { "titulo": "Bridge Over Troubled Water", "artista": "Simon & Garfunkel", "imagen": "https://upload.wikimedia.org/wikipedia/en/d/df/Simon_%26_Garfunkel%2C_Bridge_Over_Troubled_Water.jpg" },
-      { "titulo": "Unknown Pleasures", "artista": "Joy Division", "imagen": "https://upload.wikimedia.org/wikipedia/en/3/3c/UnknownPleasuresVinyl.jpg" },
-      { "titulo": "London Calling", "artista": "The Clash", "imagen": "https://upload.wikimedia.org/wikipedia/en/0/00/TheClashLondonCallingalbumcover.jpg" },
-      { "titulo": "The Velvet Underground & Nico", "artista": "The Velvet Underground", "imagen": "https://upload.wikimedia.org/wikipedia/en/0/0c/Velvet_Underground_and_Nico.jpg" },
-      { "titulo": "I Never Loved a Man the Way I Love You", "artista": "Aretha Franklin", "imagen": "https://upload.wikimedia.org/wikipedia/en/7/76/ArethaFranklinINeverLovedaMan.jpg" }
+      { 
+        "titulo": "What's Going On", 
+        "artista": "Marvin Gaye", 
+        "imagen": "https://upload.wikimedia.org/wikipedia/en/8/84/MarvinGayeWhat%27sGoingOnalbumcover.jpg",
+        "color": "#3a3a3a"
+      },
+      { 
+        "titulo": "Blue", 
+        "artista": "Joni Mitchell", 
+        "imagen": "https://upload.wikimedia.org/wikipedia/en/3/3b/Bluealbumcover.jpg",
+        "color": "#2a2a3a"
+      },
+      { 
+        "titulo": "Bridge Over Troubled Water", 
+        "artista": "Simon & Garfunkel", 
+        "imagen": "https://upload.wikimedia.org/wikipedia/en/d/df/Simon_%26_Garfunkel%2C_Bridge_Over_Troubled_Water.jpg",
+        "color": "#3a3a3a"
+      }
     ],
     "joyas": [
-      { "titulo": "Did You Know That There's a Tunnel Under Ocean Blvd", "artista": "Lana Del Rey", "imagen": "https://upload.wikimedia.org/wikipedia/en/6/6b/Lana_Del_Rey_-_Did_You_Know_That_There%27s_a_Tunnel_Under_Ocean_Blvd.png" },
-      { "titulo": "The Car", "artista": "Arctic Monkeys", "imagen": "https://upload.wikimedia.org/wikipedia/en/f/f4/The_Car_-_Arctic_Monkeys.png" },
-      { "titulo": "An Evening with Silk Sonic", "artista": "Bruno Mars, Anderson .Paak", "imagen": "https://upload.wikimedia.org/wikipedia/en/e/e2/Silk_Sonic_-_An_Evening_with_Silk_Sonic.png" },
-      { "titulo": "And in the Darkness, Hearts Aglow", "artista": "Weyes Blood", "imagen": "https://upload.wikimedia.org/wikipedia/en/9/9e/Weyes_Blood_-_And_in_the_Darkness%2C_Hearts_Aglow.png" },
-      { "titulo": "Midnights", "artista": "Taylor Swift", "imagen": "https://upload.wikimedia.org/wikipedia/en/8/8f/Taylor_Swift_-_Midnights.png" },
-      { "titulo": "Mordechai", "artista": "Khruangbin", "imagen": "https://upload.wikimedia.org/wikipedia/en/5/5d/Khruangbin_-_Mordechai.png" },
-      { "titulo": "I Don't Live Here Anymore", "artista": "The War on Drugs", "imagen": "https://upload.wikimedia.org/wikipedia/en/4/4e/The_War_on_Drugs_-_I_Don%27t_Live_Here_Anymore.png" }
+      { 
+        "titulo": "Did You Know...", 
+        "artista": "Lana Del Rey", 
+        "imagen": "https://upload.wikimedia.org/wikipedia/en/6/6b/Lana_Del_Rey_-_Did_You_Know_That_There%27s_a_Tunnel_Under_Ocean_Blvd.png",
+        "color": "#3a3a3a"
+      },
+      { 
+        "titulo": "The Car", 
+        "artista": "Arctic Monkeys", 
+        "imagen": "https://upload.wikimedia.org/wikipedia/en/f/f4/The_Car_-_Arctic_Monkeys.png",
+        "color": "#3a3a3a"
+      },
+      { 
+        "titulo": "Midnights", 
+        "artista": "Taylor Swift", 
+        "imagen": "https://upload.wikimedia.org/wikipedia/en/8/8f/Taylor_Swift_-_Midnights.png",
+        "color": "#f0f0f0"
+      }
     ],
     "generos": [
-      "1950s", "1960s", "1970s", "1980s", "1990s", "2000s y 2010s",
-      "Rock Clásico", "Soul & Motown", "Funk", "Jazz", "Blues", "Disco",
-      "Pop Retro", "Psychedelic Rock", "Folk", "Reggae & Dub",
-      "Post-Punk / New Wave", "R&B Clásico", "Garage Rock", "Experimental", "Latin Vintage"
+      { "nombre": "Rock Clásico", "color": "bg-[#9b2f4a]" },
+      { "nombre": "Soul & Motown", "color": "bg-yellow-500" },
+      { "nombre": "Funk", "color": "bg-orange-600" },
+      { "nombre": "Jazz", "color": "bg-[#1f4f6f]" },
+      { "nombre": "Blues", "color": "bg-[#2a3a5a]" },
+      { "nombre": "Disco", "color": "bg-pink-600" },
+      { "nombre": "Pop Retro", "color": "bg-pink-300" },
+      { "nombre": "Psychedelic Rock", "color": "bg-lime-400" },
+      { "nombre": "Folk", "color": "bg-[#7a5a3a]" },
+      { "nombre": "Reggae & Dub", "color": "bg-lime-600" },
+      { "nombre": "Post-Punk / New Wave", "color": "bg-[#3a3a3a]" },
+      { "nombre": "R&B Clásico", "color": "bg-purple-600" },
+      { "nombre": "Garage Rock", "color": "bg-[#b33a1a]" },
+      { "nombre": "Experimental", "color": "bg-yellow-400" },
+      { "nombre": "Latin Vintage", "color": "bg-[#b33a3a]" }
+    ],
+    "decadas": [
+      { "nombre": "1950s", "color": "bg-pink-300" },
+      { "nombre": "1960s", "color": "bg-yellow-400" },
+      { "nombre": "1970s", "color": "bg-[#8b4a0e]" },
+      { "nombre": "1980s", "color": "bg-fuchsia-400" },
+      { "nombre": "1990s", "color": "bg-orange-600" },
+      { "nombre": "2000s y 2010s", "color": "bg-sky-400" }
     ]
   }
-  
