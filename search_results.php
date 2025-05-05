@@ -7,10 +7,11 @@ if (!isset($_SESSION['user']) || empty($_SESSION['user']['username'])) {
 
 $nombreUsuario = htmlspecialchars($_SESSION['user']['username']);
 $query = isset($_GET['query']) ? htmlspecialchars($_GET['query']) : '';
+$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 
 // Configuración de la API de Discogs
-$discogs_token = 'nWnZGawOdQuUikqnQWBKvXrjxeNvNmqJERKIQRGy'; // Reemplaza con tu token real
-$api_url = "https://api.discogs.com/database/search?q=" . urlencode($query) . "&type=release,artist&key=WGntzCWnmIBNKDEtoqcp&secret=YhslOxfRtHXRVZNZwXlBxrCRUYFfgZTB";
+$discogs_token = 'nWnZGawOdQuUikqnQWBKvXrjxeNvNmqJERKIQRGy';
+$api_url = "https://api.discogs.com/database/search?q=" . urlencode($query) . "&type=release,artist&page=$page&per_page=24&key=WGntzCWnmIBNKDEtoqcp&secret=YhslOxfRtHXRVZNZwXlBxrCRUYFfgZTB";
 
 // Función para hacer la petición a la API
 function fetchFromDiscogs($url, $token) {
@@ -89,10 +90,11 @@ if (!empty($query)) {
   >
     <!-- Header -->
     <header class="flex flex-wrap items-center gap-4 md:gap-6">
+      <!-- Logo and mobile menu button -->
       <div class="flex items-center gap-3 w-full md:w-auto justify-between">
         <div class="flex items-center gap-3">
           <img
-            alt="Vinylpedia logo"
+            alt="Vinylpedia logo, stylized vinyl record icon"
             class="w-8 h-8 md:w-10 md:h-10"
             src="https://storage.googleapis.com/a1aa/image/20543dea-4330-4442-8ea1-3c4e906305c5.jpg"
           />
@@ -103,11 +105,18 @@ if (!empty($query)) {
         </button>
       </div>
 
+      <!-- Navigation - hidden on mobile by default -->
       <nav class="hidden md:flex items-center gap-4 md:gap-6 md:ml-6 text-white text-sm w-full md:w-auto" id="mainNav">
-        <a class="bg-gray-300 text-gray-900 rounded px-2 py-1 cursor-default" href="home_web.php">Inicio</a>
+        <a
+          aria-current="page"
+          class="bg-gray-300 text-gray-900 rounded px-2 py-1 cursor-default"
+          href="home_web.php"
+          >Inicio</a
+        >
         <a class="hover:underline" href="#">Biblioteca</a>
       </nav>
 
+      <!-- Search and buttons -->
       <div class="flex items-center gap-3 w-full md:w-auto">
         <form action="search_results.php" method="GET" class="relative w-full md:max-w-[220px]">
           <input
@@ -132,7 +141,7 @@ if (!empty($query)) {
         >
           <i class="fas fa-shopping-cart"></i>
         </button>
-        <div class="relative group hidden md:flex items-center gap-2 ml-2">
+        <div class="relative group">
           <button class="bg-white text-black rounded px-3 py-1 text-sm font-semibold"><?= $nombreUsuario ?></button>
           <div class="absolute right-0 mt-1 w-36 bg-white text-black rounded shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity text-xs">
             <button class="block w-full text-left px-3 py-1 font-bold hover:bg-gray-200">Mi cuenta</button>
@@ -143,14 +152,20 @@ if (!empty($query)) {
       </div>
     </header>
 
+    <!-- Mobile auth buttons -->
+    <div class="md:hidden flex justify-center gap-4 pb-2">
+      <button class="bg-white text-black rounded px-3 py-1 text-sm">Sign in</button>
+      <button class="bg-gray-700 text-white rounded px-3 py-1 text-sm">Register</button>
+    </div>
+
     <main class="flex flex-col md:flex-row gap-4 md:gap-6">
-      <!-- Filters -->
+      <!-- Filters - Hidden on mobile by default -->
       <aside
         class="hidden md:block bg-gray-600 bg-opacity-40 rounded border border-gray-500 p-4 w-full md:w-[180px] lg:w-[220px] text-gray-300 text-xs"
         id="filtersSidebar"
       >
         <div class="mb-4">
-          <p class="mb-2 font-normal">Filtros:</p>
+          <p class="mb-2 font-normal">Filtros aplicados:</p>
           <div class="flex flex-wrap gap-2" id="appliedFilters"></div>
         </div>
         <div class="mb-4">
@@ -219,7 +234,10 @@ if (!empty($query)) {
           <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3 md:gap-4" id="resultsGrid">
             <?php foreach ($results['results'] as $item): ?>
               <?php if ($item['type'] === 'release' || $item['type'] === 'artist'): ?>
-                <article class="bg-gray-700 rounded-md p-2 flex flex-col gap-1 w-full hover:bg-gray-600 transition-colors">
+                <article 
+                  class="bg-gray-700 rounded-md p-2 flex flex-col gap-1 w-full hover:bg-gray-600 transition-colors cursor-pointer"
+                  onclick="viewDetails('<?= $item['id'] ?>', '<?= $item['type'] ?>')"
+                >
                   <div class="relative">
                     <?php if ($item['type'] === 'release'): ?>
                       <img
@@ -304,12 +322,21 @@ if (!empty($query)) {
     </main>
   </div>
 
+  <!-- Mobile menu toggle script -->
   <script>
-    // Mobile menu toggle
     document.getElementById('mobileMenuButton').addEventListener('click', function() {
       document.getElementById('mainNav').classList.toggle('hidden');
       document.getElementById('filtersSidebar').classList.toggle('hidden');
     });
+
+    // Función para redirigir a la vista de detalles
+    function viewDetails(id, type) {
+      if (type === 'release') {
+        window.location.href = `album_details.php?id=${id}`;
+      } else if (type === 'artist') {
+        window.location.href = `artist_details.php?id=${id}`;
+      }
+    }
 
     // Filtros dinámicos
     const checkboxes = document.querySelectorAll('input[type="checkbox"]');
