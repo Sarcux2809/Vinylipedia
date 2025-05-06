@@ -68,8 +68,9 @@ $nombreUsuario = htmlspecialchars($_SESSION['user']['username']);
           <button class="bg-white text-black rounded px-3 py-1 font-semibold"><?= $nombreUsuario ?></button>
           <div class="absolute right-0 mt-1 w-36 bg-white text-black rounded shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity text-xs">
             <button class="block w-full text-left px-3 py-1 font-bold hover:bg-gray-200">Mi cuenta</button>
-            <button class="block w-full text-left px-3 py-1 hover:bg-gray-200">Para Artistas</button>
-            <a href="logout.php" class="block w-full text-left px-3 py-1 hover:bg-gray-200">Cerrar sesión</a>
+            <button onclick="window.location.href='artistas.html'" class="block w-full text-left px-3 py-1 hover:bg-gray-200">
+  Para Artistas
+</button>            <a href="logout.php" class="block w-full text-left px-3 py-1 hover:bg-gray-200">Cerrar sesión</a>
           </div>
         </div>
       </div>
